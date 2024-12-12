@@ -126,16 +126,16 @@ elif menu == "🔍 Prediksi : Melakukan prediksi kanker paru.":
     }
 
     # Tombol prediksi
-if st.button("Predict"):
-    try:
-        result = predict_lung_cancer(data)
-        prediction = result.get('data', 'Tidak ada hasil')
-        
-        if prediction.lower() == 'yes':
-            st.success("Hasil Prediksi : Terdiagnosis Terkena Kanker Paru-paru")
-        elif prediction.lower() == 'no':
-            st.success("Hasil Prediksi : Terdiagnosis Tidak Terkena Kanker Paru-paru")
-        else:
-            st.warning("Hasil Prediksi tidak dapat dipastikan")
-    except Exception as e:
-        st.error(f"Error: {e}")
+    if st.button("Predict"):
+        try:
+            result = predict_lung_cancer(data)
+            prediction = result.get('data', 'Tidak ada hasil')
+            
+            if prediction.lower() == 'yes':
+                st.success("Hasil Prediksi : Terdiagnosis Terkena Kanker Paru-paru")
+            elif prediction.lower() == 'no':
+                st.success("Hasil Prediksi : Terdiagnosis Tidak Terkena Kanker Paru-paru")
+            else:
+                st.warning("Hasil Prediksi tidak dapat dipastikan")
+        except Exception as e:
+            st.error(f"Error: {e}")
