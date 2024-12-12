@@ -63,7 +63,15 @@ elif menu == "🔍 Prediksi : Melakukan prediksi kanker paru.":
     with col1:
         gender = st.selectbox("Gender", ["Male", "Female"])
     with col2:
-        age = st.number_input("Age", min_value=1, step=1)
+        age = st.number_input("Age", min_value=1, max_value=87, step=1)
+        st.markdown(
+            """
+            <span style="font-size: 16px; color: #888;">
+                <i class="fa fa-info-circle" title="Masukkan usia Anda (antara 1 hingga 87 tahun)"></i>
+            </span>
+            """, 
+            unsafe_allow_html=True
+        )
 
     with col1:
         smoking = st.selectbox("Smoking", ["No", "Yes"])
@@ -118,10 +126,16 @@ elif menu == "🔍 Prediksi : Melakukan prediksi kanker paru.":
     }
 
     # Tombol prediksi
-    if st.button("Predict"):
-        try:
-            result = predict_lung_cancer(data)
-            prediction = result.get('data', 'Tidak ada hasil')
-            st.success(f"Hasil Prediksi: {prediction}")
-        except Exception as e:
-            st.error(f"Error: {e}")
+if st.button("Predict"):
+    try:
+        result = predict_lung_cancer(data)
+        prediction = result.get('data', 'Tidak ada hasil')
+        
+        if prediction.lower() == 'yes':
+            st.success("Hasil Prediksi : Terdiagnosis Terkena Kanker Paru-paru")
+        elif prediction.lower() == 'no':
+            st.success("Hasil Prediksi : Terdiagnosis Tidak Terkena Kanker Paru-paru")
+        else:
+            st.warning("Hasil Prediksi tidak dapat dipastikan")
+    except Exception as e:
+        st.error(f"Error: {e}")
