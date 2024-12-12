@@ -64,14 +64,6 @@ elif menu == "🔍 Prediksi : Melakukan prediksi kanker paru.":
         gender = st.selectbox("Gender", ["Male", "Female"])
     with col2:
         age = st.number_input("Age", min_value=1, max_value=87, step=1)
-        st.markdown(
-            """
-            <span style="font-size: 16px; color: #888;">
-                <i class="fa fa-info-circle" title="Masukkan usia Anda (antara 1 hingga 87 tahun)"></i>
-            </span>
-            """, 
-            unsafe_allow_html=True
-        )
 
     with col1:
         smoking = st.selectbox("Smoking", ["No", "Yes"])
